@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- #1: Comments as Perfume (Комментарии объясняют очевидные теги XML, скрывая суть) -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- #2: Mixed Case Package (Нарушение конвенции lowercase в именах пакетов) -->
+    <groupId>Com.Legacy.Systems</groupId>
+    <!-- #3: Abstract Artifact Name (Слишком абстрактное имя артефакта) -->
+    <artifactId>CORE_MODULE</artifactId>
+    <!-- #4: Semver Violation (Нарушение семантического версионирования) -->
+    <version>FINAL_v100_RC2</version>
+
+    <!-- #5: No Properties (Версии библиотек захардкожены внизу, а не вынесены в properties) -->
+
+    <dependencies>
+        <!-- #6: Dependency Bloat (Тянем огромную либу ради одного метода reverse) -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <!-- #7: Legacy Library (Использование JodaTime вместо java.time) -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.10</version>
+        </dependency>
+        <!-- #8: Unused Dependency (Мертвый груз, но Maven его скачивает и строит дерево) -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- #9: Duplicated Dependency (Одна зависимость объявлена дважды) -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- #10: Final Name Hardcode (Жесткое имя выходного файла) -->
+        <finalName>run_me</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- #11: Version Pinning (Жесткая привязка к старой версии плагина) -->
+                <version>3.8.1</version>
+                <configuration>
+                    <!-- #12: Downgrade (Принудительное использование Java 8) -->
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.legacy.systems.God_Controller_Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
